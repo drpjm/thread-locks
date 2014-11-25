@@ -4,12 +4,18 @@ import java.util.Random;
 
 public class Philosopher extends Thread {
 
-	private Chopstick left, right;
+	private Chopstick first, second;
 	private Random random;
 	
 	public Philosopher(Chopstick left, Chopstick right){
-		this.left = left;
-		this.right = right;
+		if(left.getId() < right.getId()){
+			this.first = left;
+			this.second = right;
+		}
+		else{
+			this.first = right;
+			this.second = left;
+		}
 		random = new Random();
 	}
 
@@ -18,9 +24,9 @@ public class Philosopher extends Thread {
 		try {
 			while(true){
 				Thread.sleep(random.nextInt(1000)); // THINK!
-				synchronized(left){ // Grab left chopstick
-					synchronized(right){ // Grab right chopstick
-						System.out.println("Philosopher " + (left.getId() + 1) + " eating!");
+				synchronized(first){ // Grab left chopstick
+					synchronized(second){ // Grab right chopstick
+						System.out.println("Philosopher eating with chopsticks " + "(" + first.getId() + "," + second.getId() + ")");
 						Thread.sleep(random.nextInt(1000)); // EAT!
 					}
 				}
