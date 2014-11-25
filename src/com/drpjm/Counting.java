@@ -5,6 +5,7 @@ public class Counting {
 	public static void main(String[] args) throws InterruptedException {
 		class Counter {
 			private int count = 0;
+			// adding sychronized keyword makes the increment() function enforce mutual exclusion.
 			public synchronized void increment(){
 				count++;
 			}
