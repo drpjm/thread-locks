@@ -52,6 +52,7 @@ public class Interupptible {
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
+		// These calls will work since the ReentrantLock methods are used
 		t1.interrupt();
 		t2.interrupt();
 		try {
